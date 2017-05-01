@@ -16,4 +16,8 @@ public class UserFactory {
   public UserId getUserId(String userId) {
     return new UserId(fromString(userId));
   }
+
+  public User getUser(String username) {
+    return getUser(new UserId(), username);
+  }
 }
