@@ -1,10 +1,11 @@
 package com.tweetqueue.core.model.user;
 
-import java.util.UUID;
-
 import static java.util.UUID.randomUUID;
 
+import java.util.UUID;
+
 public class UserId {
+
   private final UUID id;
 
   public UserId(UUID id) {

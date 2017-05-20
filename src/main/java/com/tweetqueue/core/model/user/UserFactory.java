@@ -1,10 +1,11 @@
 package com.tweetqueue.core.model.user;
 
-import java.util.Collection;
-
 import static java.util.UUID.fromString;
 
+import java.util.Collection;
+
 public class UserFactory {
+
   public User getUser(UserId id, String username) {
     return new User(id, username);
   }
