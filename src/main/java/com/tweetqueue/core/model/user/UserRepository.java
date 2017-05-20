@@ -1,7 +1,10 @@
 package com.tweetqueue.core.model.user;
 
+import java.util.Optional;
+
 public interface UserRepository {
-  User getById(UserId userId);
+
+  Optional<User> getById(UserId userId);
 
   User save(User user);
 
