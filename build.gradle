@@ -5,9 +5,16 @@ apply plugin: 'java'
 
 sourceCompatibility = 1.8
 
-repositories {
-  mavenCentral()
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.11'
+  }
 }
+
+apply plugin: "info.solidsoft.pitest"
 
 dependencies {
   testCompile group: 'junit', name: 'junit', version: '4.12'
