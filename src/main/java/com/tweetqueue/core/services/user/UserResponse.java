@@ -1,6 +1,5 @@
 package com.tweetqueue.core.services.user;
 
-
 public class UserResponse {
 
   private final String id;
@@ -19,6 +18,4 @@ public class UserResponse {
   public String getUsername() {
     return username;
   }
-
-
 }

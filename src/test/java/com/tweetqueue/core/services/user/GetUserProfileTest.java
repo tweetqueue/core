@@ -1,21 +1,22 @@
 package com.tweetqueue.core.services.user;
 
+import com.tweetqueue.core.model.user.User;
+import com.tweetqueue.core.model.user.UserFactory;
+import com.tweetqueue.core.model.user.UserId;
+import com.tweetqueue.core.model.user.UserRepository;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.util.Optional;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
-import com.tweetqueue.core.model.user.User;
-import com.tweetqueue.core.model.user.UserFactory;
-import com.tweetqueue.core.model.user.UserId;
-import com.tweetqueue.core.model.user.UserRepository;
-import java.util.Optional;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 
 public class GetUserProfileTest {
@@ -62,8 +63,7 @@ public class GetUserProfileTest {
     assertThat(getUserProfile.getUserProfileById(getUserRequest), is(userResponse));
     verify(userResponseFactory, times(1))
         .getUserResponse(user);
-    verify(userFactory, never()).getUser(null, null);
-
+    verify(userFactory, never()).getUser(null, null, null);
   }
 
   @Test
@@ -71,12 +71,12 @@ public class GetUserProfileTest {
     givenAUserRequestToGetAProfile();
     andGeneratesAndUserResponse();
     when(userRepository.getById(userId)).thenReturn(Optional.empty());
-    when(userFactory.getUser(null, null)).thenReturn(user);
+    when(userFactory.getUser(null, null, null)).thenReturn(user);
 
     assertThat(getUserProfile.getUserProfileById(getUserRequest), is(userResponse));
     verify(userResponseFactory, times(1))
         .getUserResponse(user);
-    verify(userFactory, times(1)).getUser(null, null);
+    verify(userFactory, times(1)).getUser(null, null, null);
   }
 
   private void givenAUserRequestToGetAProfile() {

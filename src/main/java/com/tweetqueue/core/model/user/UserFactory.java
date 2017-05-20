@@ -1,24 +1,28 @@
 package com.tweetqueue.core.model.user;
 
-import static java.util.UUID.fromString;
+import edu.umd.cs.findbugs.annotations.CheckReturnValue;
 
 import java.util.Collection;
 
+import static java.util.UUID.fromString;
+
 public class UserFactory {
-
-  public User getUser(UserId id, String username) {
-    return new User(id, username);
+  @CheckReturnValue
+  public User getUser(UserId id, String username, String email) {
+    return new User(id, username, email);
   }
 
-  public User getUser(UserId id, String username, Collection<SocialInformation> loginInformation) {
-    return getUser(id, username).setLoginInformation(loginInformation);
+  public User getUser(UserId id, String username, String email, Collection<SocialInformation> loginInformation) {
+    return getUser(id, username, email).setLoginInformation(loginInformation);
   }
 
+  @CheckReturnValue
   public UserId getUserId(String userId) {
     return new UserId(fromString(userId));
   }
 
-  public User getUser(String username) {
-    return getUser(new UserId(), username);
+  @CheckReturnValue
+  public User getUser(String username, String email) {
+    return getUser(new UserId(), username, email);
   }
 }
