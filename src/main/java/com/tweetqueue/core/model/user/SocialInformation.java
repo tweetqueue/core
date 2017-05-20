@@ -1,6 +1,7 @@
 package com.tweetqueue.core.model.user;
 
 public class SocialInformation {
+
   private final String socialId;
 
   private final String socialToken;
