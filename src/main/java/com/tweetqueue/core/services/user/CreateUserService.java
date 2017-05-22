@@ -1,6 +1,5 @@
 package com.tweetqueue.core.services.user;
 
-
 import com.tweetqueue.core.model.user.User;
 import com.tweetqueue.core.model.user.UserFactory;
 import com.tweetqueue.core.model.user.UserRepository;
@@ -22,11 +21,9 @@ public class CreateUserService {
     this.userResponseFactory = userResponseFactory;
   }
 
-
   public UserResponse createUser(CreateUserRequest createUserRequest) {
-    User user = userRepository.save(userFactory.getUser(createUserRequest.getUsername()));
+    User user = userRepository.save(userFactory.getUser(createUserRequest.getUsername(), createUserRequest.getEmail()));
 
     return userResponseFactory.getUserResponse(user);
-
   }
 }

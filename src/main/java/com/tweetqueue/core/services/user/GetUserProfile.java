@@ -27,6 +27,6 @@ public class GetUserProfile {
         .getById(userFactory.getUserId(request.getId()));
 
     return userResponseFactory.getUserResponse(user
-        .orElseGet(() -> userFactory.getUser(null, null)));
+        .orElseGet(() -> userFactory.getUser(null, null, null)));
   }
 }
