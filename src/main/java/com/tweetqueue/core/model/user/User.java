@@ -11,14 +11,11 @@ public class User {
 
   private final String username;
 
-  private final String email;
-
   private Map<SocialProvider, SocialInformation> loginInformation;
 
-  User(UserId id, String username, String email) {
+  User(UserId id, String username) {
     this.id = id;
     this.username = username;
-    this.email = email;
     this.loginInformation = new HashMap<>();
   }
 
@@ -45,9 +42,5 @@ public class User {
     this.loginInformation.put(loginInformation.getSocialProvider(), loginInformation);
 
     return this;
-  }
-
-  public String getEmail() {
-    return email;
   }
 }

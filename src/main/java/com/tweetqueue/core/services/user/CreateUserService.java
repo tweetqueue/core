@@ -22,7 +22,9 @@ public class CreateUserService {
   }
 
   public UserResponse createUser(CreateUserRequest createUserRequest) {
-    User user = userRepository.save(userFactory.getUser(createUserRequest.getUsername(), createUserRequest.getEmail()));
+    User user =
+        userRepository.save(
+            userFactory.getUser(createUserRequest.getUsername()));
 
     return userResponseFactory.getUserResponse(user);
   }

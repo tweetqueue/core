@@ -9,8 +9,8 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Optional;
-
+import static java.util.Optional.empty;
+import static java.util.Optional.of;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.never;
@@ -18,34 +18,25 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-
 public class GetUserProfileTest {
 
   private static final String ID = "id";
 
   private GetUserProfile getUserProfile;
 
-  @Mock
-  private UserRepository userRepository;
+  @Mock private UserRepository userRepository;
 
-  @Mock
-  private UserFactory userFactory;
+  @Mock private UserFactory userFactory;
 
-  @Mock
-  private UserResponseFactory userResponseFactory;
+  @Mock private UserResponseFactory userResponseFactory;
 
-  @Mock
-  private GetUserRequest getUserRequest;
+  @Mock private GetUserRequest getUserRequest;
 
-  @Mock
-  private UserId userId;
+  @Mock private UserId userId;
 
-  @Mock
-  private User user;
+  @Mock private User user;
 
-  @Mock
-  private UserResponse userResponse;
-
+  @Mock private UserResponse userResponse;
 
   @Before
   public void setUp() throws Exception {
@@ -58,25 +49,23 @@ public class GetUserProfileTest {
   public void getAnExistingUserProfile() {
     givenAUserRequestToGetAProfile();
     andGeneratesAndUserResponse();
-    when(userRepository.getById(userId)).thenReturn(Optional.ofNullable(user));
+    when(userRepository.getById(userId)).thenReturn(of(user));
 
     assertThat(getUserProfile.getUserProfileById(getUserRequest), is(userResponse));
-    verify(userResponseFactory, times(1))
-        .getUserResponse(user);
-    verify(userFactory, never()).getUser(null, null, null);
+    verify(userResponseFactory, times(1)).getUserResponse(user);
+    verify(userFactory, never()).getUser(null, null);
   }
 
   @Test
   public void getNonExistingUserProfile() {
     givenAUserRequestToGetAProfile();
     andGeneratesAndUserResponse();
-    when(userRepository.getById(userId)).thenReturn(Optional.empty());
-    when(userFactory.getUser(null, null, null)).thenReturn(user);
+    when(userRepository.getById(userId)).thenReturn(empty());
+    when(userFactory.getUser(null, null)).thenReturn(user);
 
     assertThat(getUserProfile.getUserProfileById(getUserRequest), is(userResponse));
-    verify(userResponseFactory, times(1))
-        .getUserResponse(user);
-    verify(userFactory, times(1)).getUser(null, null, null);
+    verify(userResponseFactory, times(1)).getUserResponse(user);
+    verify(userFactory, times(1)).getUser(null, null);
   }
 
   private void givenAUserRequestToGetAProfile() {

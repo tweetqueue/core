@@ -16,8 +16,6 @@ import static org.mockito.Mockito.when;
 
 public class CreateUserServiceTest {
 
-  private static final String EMAIL = "email";
-
   private static final String USER = "user";
 
   private CreateUserService createUserService;
@@ -42,10 +40,8 @@ public class CreateUserServiceTest {
 
   @Test
   public void itCreateANewUser() {
-
     when(createUserRequest.getUsername()).thenReturn(USER);
-    when(createUserRequest.getEmail()).thenReturn(EMAIL);
-    when(userFactory.getUser(USER, EMAIL)).thenReturn(user);
+    when(userFactory.getUser(USER)).thenReturn(user);
     when(userRepository.save(user)).thenReturn(user);
     when(userResponseFactory.getUserResponse(user)).thenReturn(userResponse);
 
