@@ -1,3 +1,16 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.11'
+  }
+}
+
+plugins {
+  id 'com.github.kt3k.coveralls' version '2.8.1'
+}
+
 group 'com.tweetqueue'
 version '1.0-SNAPSHOT'
 
@@ -10,15 +23,6 @@ sourceCompatibility = 1.8
 
 repositories {
   mavenCentral()
-}
-
-buildscript {
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.11'
-  }
 }
 
 apply plugin: "info.solidsoft.pitest"
@@ -43,4 +47,14 @@ tasks.withType(FindBugs) {
     xml.enabled false
     html.enabled true
   }
+}
+
+check.dependsOn "pitest"
+
+pitest {
+  targetClasses = ['com.tweetqueue.core.services.*']
+  threads = 4
+  outputFormats = ['XML', 'HTML']
+  enableDefaultIncrementalAnalysis = true
+  timestampedReports = false
 }
