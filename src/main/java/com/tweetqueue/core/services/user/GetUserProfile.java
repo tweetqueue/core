@@ -3,7 +3,6 @@ package com.tweetqueue.core.services.user;
 import com.tweetqueue.core.model.user.User;
 import com.tweetqueue.core.model.user.UserFactory;
 import com.tweetqueue.core.model.user.UserRepository;
-
 import java.util.Optional;
 
 public class GetUserProfile {
@@ -17,8 +16,7 @@ public class GetUserProfile {
   public GetUserProfile(
       UserRepository userRepository,
       UserFactory userFactory,
-      UserResponseFactory userResponseFactory
-  ) {
+      UserResponseFactory userResponseFactory) {
     this.userRepository = userRepository;
     this.userFactory = userFactory;
     this.userResponseFactory = userResponseFactory;

@@ -1,10 +1,10 @@
 package com.tweetqueue.core.model.user;
 
+import static java.util.stream.Collectors.toMap;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
-import static java.util.stream.Collectors.toMap;
 
 public class User {
   private final UserId id;
@@ -33,7 +33,8 @@ public class User {
 
   public User setLoginInformation(Collection<SocialInformation> loginInformation) {
     this.loginInformation =
-        loginInformation.stream().collect(toMap(SocialInformation::getSocialProvider, o -> o));
+        loginInformation.stream()
+            .collect(toMap(SocialInformation::getSocialProvider, o -> o, (s1, s2) -> s2));
 
     return this;
   }

@@ -5,7 +5,7 @@ import edu.umd.cs.findbugs.annotations.CheckReturnValue;
 
 public class UserResponseFactory {
   @CheckReturnValue
-  public UserResponse getUserResponse(User user) {
+  UserResponse getUserResponse(User user) {
     return new UserResponse(user.getId().toString(), user.getUsername());
   }
 }

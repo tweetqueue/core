@@ -1,14 +1,5 @@
 package com.tweetqueue.core.services.user;
 
-import com.tweetqueue.core.model.user.User;
-import com.tweetqueue.core.model.user.UserFactory;
-import com.tweetqueue.core.model.user.UserId;
-import com.tweetqueue.core.model.user.UserRepository;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -17,6 +8,15 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import com.tweetqueue.core.model.user.User;
+import com.tweetqueue.core.model.user.UserFactory;
+import com.tweetqueue.core.model.user.UserId;
+import com.tweetqueue.core.model.user.UserRepository;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 public class GetUserProfileTest {
 
